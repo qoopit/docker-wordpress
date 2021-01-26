@@ -12,7 +12,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: 238764234iuhrerwe
 
-   wp_dev:
+   wp:
      depends_on:
        - wp_db
      build: .
