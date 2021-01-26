@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+   wp_db:
+     image: mariadb:10.4
+     volumes:
+       - ./db:/var/lib/mysql
+     restart: always
+     environment:
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: djhfdskfhsdkfds
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: 238764234iuhrerwe
+
+   wp_dev:
+     depends_on:
+       - wp_db
+     build: .
+     ports:
+       - "8000:80"
+     restart: always
+     volumes:
+        - ./wp-content:/var/www/html/wp-content
+     environment:
+       WORDPRESS_DB_HOST: wp_db
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: djhfdskfhsdkfds
+       WORDPRESS_DB_NAME: wordpress
+       XWORDPRESS_DEBUG: 'false'
+       WP_DEBUG: 'false'
